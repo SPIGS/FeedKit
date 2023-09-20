@@ -121,7 +121,7 @@ class YouTubeTests: BaseTestCase {
                 
             }
 
-            self.waitForExpectations(timeout: self.timeout, handler: nil
+            self.waitForExpectations(timeout: self.timeout, handler: nil)
         }
     }
 }
