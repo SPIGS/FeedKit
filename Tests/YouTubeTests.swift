@@ -32,7 +32,7 @@ class YouTubeTests: BaseTestCase {
         
         // Given
         let URL = fileURL("YouTube", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
         
         do {
             // When
@@ -57,7 +57,7 @@ class YouTubeTests: BaseTestCase {
   func testYouTubeChannelID() {
         
         let URL = fileURL("YouTubeXMLFeed", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
         
         do {
             
@@ -73,7 +73,7 @@ class YouTubeTests: BaseTestCase {
     func testYouTubeVideoID() {
         
         let URL = fileURL("YouTubeXMLFeed", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
         
         do {
             
@@ -111,7 +111,7 @@ class YouTubeTests: BaseTestCase {
             // Given
             let expectation = self.expectation(description: "Atom Parsing Performance")
             let URL = self.fileURL("YouTube", type: "xml")
-            let parser = FeedParser(URL: URL)
+            let parser = FeedParser(url: URL)
             
             // When
             parser.parseAsync { (result) in

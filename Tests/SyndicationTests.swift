@@ -31,7 +31,7 @@ class SyndicationTests: BaseTestCase {
 
         // Given
         let URL = fileURL("Syndication", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
 
         do {
             // When
@@ -56,7 +56,7 @@ class SyndicationTests: BaseTestCase {
             // Given
             let expectation = self.expectation(description: "Syndication Parsing Performance")
             let URL = self.fileURL("Syndication", type: "xml")
-            let parser = FeedParser(URL: URL)
+            let parser = FeedParser(url: URL)
             
             // When
             parser.parseAsync { (result) in
