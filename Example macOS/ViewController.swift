@@ -25,7 +25,7 @@
 import Cocoa
 import FeedKit
 
-let feedURL = URL(string: "https://github.com/SwiftOldDriver/iOS-Weekly/releases.atom")!
+let feedURL = URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!
 
 class ViewController: NSViewController {
 
