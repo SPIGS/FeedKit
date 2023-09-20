@@ -110,4 +110,9 @@ enum AtomPath: String {
     case feedEntryMediaGroupMediaThumbnail                 = "/feed/entry/media:group/media:thumbnail"
     case feedEntryMediaGroupMediaDescription               = "/feed/entry/media:group/media:description"
     
+    // MARK: YouTube
+    
+    case feedEntryYouTubeChannelID                         = "/feed/entry/yt:channelId"
+    case feedEntryYouTubeVideoID                           = "/feed/entry/yt:videoId"
+    
 }
