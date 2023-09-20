@@ -2,6 +2,7 @@
 //  YouTubeTests.swift
 //
 //  Copyright (c) 2023 Naufal Fachrian
+//  Copyright (c) 2016 - 2018 Nuno Manuel Dias
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +28,33 @@ import FeedKit
 
 class YouTubeTests: BaseTestCase {
     
-    func testYouTubeChannelID() {
+    func testAtomFeed() {
+        
+        // Given
+        let URL = fileURL("YouTube", type: "xml")
+        let parser = FeedParser(URL: URL)
+        
+        do {
+            // When
+            let feed = try parser.parse().get().atomFeed
+
+            // Then
+            
+            XCTAssertNotNil(feed)
+          
+          XCTAssertEqual(feed?.entries?.first?.media?.mediaGroup?.mediaDescription?.value, """
+            SwiftUI’s DatePicker view is analogous to UIDatePicker, and comes with a variety options for controlling how it looks and works. Like all controls that store values, it does need to be bound to some sort of state in your app. 
+
+            From iOS 14 onwards, you can use the new GraphicalDatePickerStyle() to get a more advanced date picker, that shows a calendar plus space to enter a precise time
+            """)
+            
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+      
+    }
+  
+  func testYouTubeChannelID() {
         
         let URL = fileURL("YouTubeXMLFeed", type: "xml")
         let parser = FeedParser(URL: URL)
@@ -37,13 +64,12 @@ class YouTubeTests: BaseTestCase {
             let feed = try parser.parse().get().atomFeed
             
             XCTAssertEqual(feed?.entries?.last?.yt?.channelID, "UCE_M8A5yxnLfW0KghEeajjw")
-            
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
-    }
     
+  }
+        
     func testYouTubeVideoID() {
         
         let URL = fileURL("YouTubeXMLFeed", type: "xml")
@@ -76,7 +102,26 @@ class YouTubeTests: BaseTestCase {
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
     }
     
+    func testAtomFeedParsingPerformance() {
+        
+        self.measure {
+            
+            // Given
+            let expectation = self.expectation(description: "Atom Parsing Performance")
+            let URL = self.fileURL("YouTube", type: "xml")
+            let parser = FeedParser(URL: URL)
+            
+            // When
+            parser.parseAsync { (result) in
+                
+                // Then
+                expectation.fulfill()
+                
+            }
+
+            self.waitForExpectations(timeout: self.timeout, handler: nil
+        }
+    }
 }
