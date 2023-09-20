@@ -97,6 +97,23 @@ public class FeedParser {
         throw ParserError.internalError(reason: "Fatal error. Unable to parse from the initialized state.")
     }
 
+    /// Starts parsing the feed asynchronously. Parsing runs by default on the
+    /// global queue.
+    /// - Parameters:
+    ///   - queue: The queue on which the completion handler is dispatched.
+    /// - Returns: The parsed `Result`
+    @available(swift 5.5)
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    public func parseAsync(
+        queue: DispatchQueue = DispatchQueue.global()
+    ) async throws -> Feed {
+        try await withCheckedThrowingContinuation { continuation in
+            parseAsync(queue: queue) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
+    
     /// Stops parsing XML feeds.
     public func abortParsing() {
         guard let xmlFeedParser = parser as? XMLFeedParser else { return }

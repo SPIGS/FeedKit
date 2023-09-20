@@ -72,6 +72,9 @@ extension AtomFeed {
         case .feedEntryMediaGroupMediaCredit:                  self.entries?.last?.media?.mediaGroup?.mediaCredits?.last?.value  = self.entries?.last?.media?.mediaGroup?.mediaCredits?.last?.value?.appending(string) ?? string
         case .feedEntryMediaGroupMediaCategory:                self.entries?.last?.media?.mediaGroup?.mediaCategory?.value       = self.entries?.last?.media?.mediaGroup?.mediaCategory?.value?.appending(string) ?? string
         case .feedEntryMediaGroupMediaRating:                  self.entries?.last?.media?.mediaGroup?.mediaRating?.value         = self.entries?.last?.media?.mediaGroup?.mediaRating?.value?.appending(string) ?? string
+        case .feedEntryMediaGroupMediaDescription:             self.entries?.last?.media?.mediaGroup?.mediaDescription?.value    = self.entries?.last?.media?.mediaGroup?.mediaDescription?.value?.appending(string) ?? string
+        case .feedEntryMediaGroupMediaTitle:                   self.entries?.last?.media?.mediaGroup?.mediaTitle?.value          = self.entries?.last?.media?.mediaGroup?.mediaTitle?.value?.appending(string) ?? string
+        case .feedEntryMediaGroupMediaThumbnail:               self.entries?.last?.media?.mediaGroup?.mediaThumbnails?.last?.value = self.entries?.last?.media?.mediaGroup?.mediaThumbnails?.last?.value?.appending(string) ?? string
         case .feedEntryMediaResponsesMediaResponse:            self.entries?.last?.media?.mediaResponses?.append(string)
         case .feedEntryMediaBackLinksBackLink:                 self.entries?.last?.media?.mediaBackLinks?.append(string)
         case .feedEntryMediaLocationPosition:                  self.entries?.last?.media?.mediaLocation?.mapFrom(latLng: string)
@@ -79,6 +82,8 @@ extension AtomFeed {
         case .feedEntryMediaScenesMediaSceneSceneDescription:  self.entries?.last?.media?.mediaScenes?.last?.sceneDescription    = self.entries?.last?.media?.mediaScenes?.last?.sceneDescription?.appending(string) ?? string
         case .feedEntryMediaScenesMediaSceneSceneStartTime:    self.entries?.last?.media?.mediaScenes?.last?.sceneStartTime      = string.toDuration()
         case .feedEntryMediaScenesMediaSceneSceneEndTime:      self.entries?.last?.media?.mediaScenes?.last?.sceneEndTime        = string.toDuration()
+        case .feedEntryYouTubeChannelID:                       self.entries?.last?.yt?.channelID                                 = self.entries?.last?.yt?.channelID?.appending(string) ?? string
+        case .feedEntryYouTubeVideoID:                         self.entries?.last?.yt?.videoID                                   = self.entries?.last?.yt?.videoID?.appending(string) ?? string
         default: break
         }
     }

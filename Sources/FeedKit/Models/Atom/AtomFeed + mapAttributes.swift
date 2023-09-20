@@ -337,9 +337,39 @@ extension AtomFeed {
 
                 entries?.last?.media?.mediaGroup?.mediaContents?.append(MediaContent(attributes: attributes))
 
+            case .feedEntryMediaGroupMediaTitle:
+
+                if  entries?.last?.media?.mediaGroup?.mediaTitle == nil {
+                    entries?.last?.media?.mediaGroup?.mediaTitle = MediaTitle(attributes: attributes)
+                }
+
+            case .feedEntryMediaGroupMediaDescription:
+
+                if  entries?.last?.media?.mediaGroup?.mediaDescription == nil {
+                    entries?.last?.media?.mediaGroup?.mediaDescription = MediaDescription(attributes: attributes)
+                }
+
+            case .feedEntryMediaGroupMediaThumbnail:
+
+                if  entries?.last?.media?.mediaGroup?.mediaThumbnails == nil {
+                    entries?.last?.media?.mediaGroup?.mediaThumbnails = []
+                }
+
+                entries?.last?.media?.mediaGroup?.mediaThumbnails?.append(MediaThumbnail(attributes: attributes))
+
             default: break
             }
 
+            // MARK: YouTube
+            
+        case
+        .feedEntryYouTubeChannelID,
+        .feedEntryYouTubeVideoID:
+            
+            if self.entries?.last?.yt == nil {
+                self.entries?.last?.yt = YouTubeNamespace()
+            }
+            
         default: break
         }
     }

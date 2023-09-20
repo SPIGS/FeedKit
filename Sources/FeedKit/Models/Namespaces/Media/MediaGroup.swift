@@ -53,6 +53,28 @@ public class MediaGroup {
     /// included, it assumes that no restrictions are necessary. It has one
     /// optional attribute.
     public var mediaRating: MediaRating?
+   
+    /// The "media:description" element is a Text construct that conveys a short 
+    /// description describing the media object typically a sentence in length.
+    /// It has one optional attribute, "type", which specifies the type of text 
+    /// embedded. Possible values are either "plain" or "html". 
+    public var mediaDescription: MediaDescription?
+  
+    /// The "media:title" element is a Text construct that conveys a human-
+    /// readable title for the title of the particular media:group. It has one 
+    /// optional attribute, "type", which specifies the type of text embedded.
+    /// Possible values are either "plain" or "html"
+    public var mediaTitle: MediaTitle?
+    
+    /// The "media:thumbnails" element is a construct that allows particular images 
+    /// to be used as representative images for the media object. If multiple 
+    /// thumbnails are included, and time coding is not at play, it is assumed that 
+    /// the images are in order of importance. It has one required attribute, "url",
+    /// which specifies the url of the thumbnail, and 
+    /// three optional attributes - "height", "width", and "time" - which specify the 
+    /// height of the thumbnail, the width of the thumbnail, and the time offset
+    /// relation to the media objec, respectively. 
+    public var mediaThumbnails: [MediaThumbnail]?
 
     public init() {}
 }
@@ -65,6 +87,9 @@ extension MediaGroup: Equatable {
             lhs.mediaContents == rhs.mediaContents &&
             lhs.mediaCredits == rhs.mediaCredits &&
             lhs.mediaCategory == rhs.mediaCategory &&
-            lhs.mediaRating == rhs.mediaRating
+            lhs.mediaRating == rhs.mediaRating &&
+            lhs.mediaDescription == rhs.mediaDescription &&
+            lhs.mediaTitle == rhs.mediaTitle &&
+            lhs.mediaThumbnails == rhs.mediaThumbnails
     }
 }
