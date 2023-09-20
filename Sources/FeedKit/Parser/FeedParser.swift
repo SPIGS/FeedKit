@@ -41,8 +41,8 @@ public class FeedParser {
     /// Initializes the parser with the JSON or XML content referenced by the given URL.
     ///
     /// - Parameter URL: URL whose contents are read to produce the feed data
-    public init(URL: URL) {
-        self.url = URL
+    public init(url: URL) {
+        self.url = url
     }
     
     /// Initializes the parser with the xml or json contents encapsulated in a 
@@ -119,6 +119,22 @@ public class FeedParser {
     {
         queue.async {
             result(self.parse())
+        }
+    }
+    /// Starts parsing the feed asynchronously. Parsing runs by default on the
+    /// global queue.
+    /// - Parameters:
+    ///   - queue: The queue on which the completion handler is dispatched.
+    /// - Returns: The parsed `Result`
+    @available(swift 5.5)
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    public func parseAsync(
+        queue: DispatchQueue = DispatchQueue.global()
+    ) async throws -> Feed {
+        try await withCheckedThrowingContinuation { continuation in
+            parseAsync(queue: queue) { result in
+                continuation.resume(with: result)
+            }
         }
     }
     

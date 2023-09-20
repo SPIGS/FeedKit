@@ -31,7 +31,7 @@ class iTunesTests: BaseTestCase {
         
         //Given
         let URL = fileURL("iTunesPodcasting", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
 
         do {
             // When
@@ -68,7 +68,7 @@ class iTunesTests: BaseTestCase {
         
         //Given
         let URL = fileURL("iTunesPodcasting", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
 
         do {
             // When

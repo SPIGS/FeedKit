@@ -31,7 +31,7 @@ class ParserErrorTests: BaseTestCase {
         
         // Given
         let URL = fileURL("FeedNotFound", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
         
         // When
         let result = parser.parse()

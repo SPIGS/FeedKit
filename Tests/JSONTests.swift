@@ -31,7 +31,7 @@ class JSONTests: BaseTestCase {
         
         // Given
         let URL = fileURL("feed", type: "json")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
         var jsonFeed = JSONFeed()
         
         jsonFeed.version = "https://jsonfeed.org/version/1"

@@ -31,7 +31,7 @@ class RDFTests: BaseTestCase {
         
         // Given
         let URL = fileURL("RDF", type: "xml")
-        let parser = FeedParser(URL: URL)
+        let parser = FeedParser(url: URL)
         
         do {
             // When
@@ -70,7 +70,7 @@ class RDFTests: BaseTestCase {
             // Given
             let expectation = self.expectation(description: "RDF Parsing Performance")
             let URL = self.fileURL("RDF", type: "xml")
-            let parser = FeedParser(URL: URL)
+            let parser = FeedParser(url: URL)
             
             // When
             parser.parseAsync { (result) in

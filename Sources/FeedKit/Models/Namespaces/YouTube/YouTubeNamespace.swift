@@ -1,7 +1,7 @@
 //
-//  FeedUriSchemeSanitizerTests.swift
+//  YouTubeNamespace.swift
 //
-//  Copyright (c) 2016 - 2018 Nuno Manuel Dias
+//  Copyright (c) 2023 Naufal Fachrian
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,32 @@
 //  SOFTWARE.
 //
 
-import XCTest
-@testable import FeedKit
+import Foundation
 
-class FeedUriSchemeSanitizerTests: XCTestCase {
+/// YouTube metadata contains channel ID and video ID for YouTube content.
+///
+/// See https://developers.google.com/youtube/v3/guides/push_notifications
+public class YouTubeNamespace {
     
-    func testFeedUriSchemeSanitizer() {
-        
-        // Given
-        let feedURL = URL(string: "feed://images.apple.com/main/rss/hotnews/hotnews.rss")!
-        let parser = FeedParser(url: feedURL)
-        
-        do {
-            // When
-            let feed = try parser.parse().get().rssFeed
+    /// The <yt:channelId> element's value to identify the channel that owns that video.
+    public var channelID: String?
+    
+    /// The <yt:videoId> element's value to identify the newly added or updated video.
+    public var videoID: String?
+    
+    public init() { }
+    
+}
 
-            // Then
-            XCTAssertNotNil(feed)
-            
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
-        
 
-        
+// MARK: - Equatable
+
+extension YouTubeNamespace: Equatable {
+    
+    public static func ==(lhs: YouTubeNamespace, rhs: YouTubeNamespace) -> Bool {
+        return
+            lhs.channelID == rhs.channelID &&
+            lhs.videoID == rhs.videoID
     }
     
 }
